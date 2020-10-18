@@ -12,7 +12,7 @@ from numpy import *
 from util import *
 
 # number of dataset to use
-dsnum = 1
+dsnum = 2
 # read training
 training = readFileWithLabel(f'./Dataset/train_{dsnum}.csv')
 
