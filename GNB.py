@@ -1,33 +1,34 @@
+from numpy.lib.function_base import average
 from pandas import *
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import *
 from numpy import *
-from util import writeResult, readFileWithLabel
+from util import *
 
-# function to import and format csv files. Returns a pair of data and expected result for each row
-
-
+# number of dataset to use
+dsnum = 1
 # read training
-training = readFileWithLabel('./Dataset/train_1.csv')
+training = readFileWithLabel(f'./Dataset/train_{dsnum}.csv')
 
 # initialize GNB
 clf = GaussianNB()
 clf.fit(training[0], training[1])
 
 # input test data
-input_data = readFileWithLabel('./Dataset/test_with_label_1.csv')
+input_data = readFileWithLabel(f'./Dataset/test_with_label_{dsnum}.csv')
 
 # get prediction array
 result = clf.predict(input_data[0])
+output_file = f'./output/GNB_DS{dsnum}.csv'
+writeResult(result, output_file)
 
-writeResult(result, './output/GNB_DS1.csv')
+writeMatrix(confusion_matrix(input_data[1], result), output_file)
 
-matrix_df = DataFrame(confusion_matrix(input_data[1], result))
+writePRF(precision_recall_fscore_support(
+    input_data[1], result), output_file)
 
-# make index start from 1
-matrix_df.index += 1
 
-# write result to csv
-matrix_df.to_csv('./output/GNB_DS1.csv', mode='a', header=list(range(1, 27)))
-
-prf = precision_recall_fscore_support(training[1], result)
+acc_score = accuracy_score(input_data[1], result)
+macro_f1 = f1_score(input_data[1], result, average='macro')
+weigthed_f1 = f1_score(input_data[1], result, average='weighted')
+writeAccuracyAvgF1s([acc_score, macro_f1, weigthed_f1], output_file)
