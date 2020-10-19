@@ -1,4 +1,6 @@
-from sklearn.naive_bayes import GaussianNB
+from sklearn.neural_network import MLPClassifier
+from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import PredefinedSplit
 from sklearn.metrics import accuracy_score, confusion_matrix, precision_recall_fscore_support, f1_score
 from numpy import concatenate
 from util import *
@@ -7,18 +9,31 @@ from util import *
 dsnum = 1
 # read training
 training = readFileWithLabel(f'./Dataset/train_{dsnum}.csv')
+val = readFileWithLabel(f'./Dataset/val_{dsnum}.csv')
+# initialize PER
+X_grid = concatenate((training[0], val[0]))
+y_grid = concatenate((training[1], val[1]))
+separation_boundary = [-1 for _ in training[1]] + [0 for _ in val[1]]
+ps = PredefinedSplit(separation_boundary)
 
-# initialize GNB
-clf = GaussianNB()
-clf.fit(training[0], training[1])
+param_grid = {
+    'activation': ['logistic', 'identity', 'tanh', 'relu'],
+    'hidden_layer_sizes': [(40, 40), (15, 15, 15)],
+    'solver': ['adam', 'sgd']
+}
+
+clf = GridSearchCV(MLPClassifier(), param_grid=param_grid, cv=ps, n_jobs=-1)
+model = clf.fit(X_grid, y_grid)
+
 
 # input test data
 input_data = readFileWithLabel(f'./Dataset/test_with_label_{dsnum}.csv')
 
 # get prediction array
 result = clf.predict(input_data[0])
-output_file = f'./output/GNB_DS{dsnum}.csv'
+output_file = f'./output/BestMLP_DS{dsnum}.csv'
 writeResult(result, output_file)
+
 writeMatrix(confusion_matrix(input_data[1], result), output_file)
 
 writePRF(precision_recall_fscore_support(
