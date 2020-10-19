@@ -5,6 +5,9 @@ Team members:
 - Yaroslav Bilodid 40068605
 
 ## How to run
-Every model has its own python script that takes in data from `./Dataset` and generates output file in `./output`
-To switch between 1st and 2nd datasets, we created dsnum variable in every script that will correspond to given dataset number.
-For example, to run just invoke `python GNB.py` in the terminal and it will automatically proceed with the dataset corresponding to dsnum.
+Every model has its own python script that takes in data from `./Dataset` and generates output file in `./output`.  
+
+For example, to run just invoke `python GNB.py` in the terminal and it will prompt you to enter dataset number.  
+
+That dataset will be used for training and testing the model.  
+
