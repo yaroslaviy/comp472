@@ -1,8 +1,6 @@
-from numpy.lib.function_base import average
-from pandas import *
 from sklearn.linear_model import Perceptron
-from sklearn.metrics import *
-from numpy import *
+from sklearn.metrics import accuracy_score, confusion_matrix, precision_recall_fscore_support, f1_score
+from numpy import concatenate
 from util import *
 
 # number of dataset to use
