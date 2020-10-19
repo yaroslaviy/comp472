@@ -12,7 +12,7 @@ from numpy import *
 from util import *
 
 # number of dataset to use
-dsnum = 2
+dsnum = input("Which dataset to use?")
 # read training
 training = readFileWithLabel(f'./Dataset/train_{dsnum}.csv')
 
@@ -38,4 +38,3 @@ acc_score = accuracy_score(input_data[1], result)
 macro_f1 = f1_score(input_data[1], result, average='macro')
 weigthed_f1 = f1_score(input_data[1], result, average='weighted')
 writeAccuracyAvgF1s([acc_score, macro_f1, weigthed_f1], output_file)
-

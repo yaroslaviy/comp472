@@ -6,7 +6,7 @@ from numpy import concatenate
 from util import *
 
 # number of dataset to use
-dsnum = 1
+dsnum = input("Which dataset to use?\n")
 # read training
 training = readFileWithLabel(f'./Dataset/train_{dsnum}.csv')
 val = readFileWithLabel(f'./Dataset/val_{dsnum}.csv')
