@@ -6,7 +6,7 @@ from numpy import *
 from util import *
 
 # number of dataset to use
-dsnum = 2
+dsnum = 1
 # read training
 training = readFileWithLabel(f'./Dataset/train_{dsnum}.csv')
 

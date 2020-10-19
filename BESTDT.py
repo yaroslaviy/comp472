@@ -6,7 +6,7 @@ from numpy import concatenate
 from util import *
 
 # number of dataset to use
-dsnum = 2
+dsnum = 1
 # read training
 training = readFileWithLabel(f'./Dataset/train_{dsnum}.csv')
 val = readFileWithLabel(f'./Dataset/val_{dsnum}.csv')
@@ -19,12 +19,12 @@ ps = PredefinedSplit(separation_boundary)
 param_grid = {
     'criterion': ['gini', 'entropy'],
     'max_depth': [10, None],
-    'min_samples_split': [1, 2, 3, 4], #values of your choice
-    'min_impurity_decrease': [0.0, 0.05, 0.1, 0.2], #values of your choice
+    'min_samples_split': [2, 3, 4, 5], #values of your choice
+    'min_impurity_decrease': [0.0, 0.001, 0.0014, 0.002, 0.0018, 0.665], #values of your choice
     'class_weight': ['balanced', None]
 }
 
-clf = GridSearchCV(DecisionTreeClassifier(), param_grid=param_grid, cv=ps)
+clf = GridSearchCV(DecisionTreeClassifier(), param_grid=param_grid, cv=ps, n_jobs=-1)
 model = clf.fit(X_grid, y_grid)
 
 
