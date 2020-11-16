@@ -9,6 +9,12 @@ def readFileWithLabel(pathToFile):
     return (data, result)
 
 
+def readFileWithOutLabel(pathToFile):
+    df = read_csv(pathToFile, sep=',', header=None)
+    data = df.to_numpy()
+    return data
+
+
 def writeResult(result, path):
     result_df = DataFrame(result)
 
