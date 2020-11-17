@@ -2,19 +2,39 @@ import numpy as np
 from Solver import Solver
 import sys
 import getopt
+import re
 
-goal_state = np.array([[1, 2, 3, 4],
-                       [5, 6, 7, 0]])
-
-init_state = np.array([[1, 5, 3, 4],
-                       [2, 6, 7, 0]])
+goal_states = np.array(([[1, 2, 3, 4],
+                         [5, 6, 7, 0]], [[1, 3, 5, 7],
+                                         [2, 4, 6, 0]]))
 
 
-def Greedy(init_state, goal_state, heuristic):
-    solver = Solver(init_state, goal_state, heuristic)
-    path = solver.solveGBFS()
-    return path
+def Greedy(puzzleNum, init_state, goal_states, heuristic):
+    solver = Solver(puzzleNum, init_state, goal_states, heuristic)
+    path, done_time = solver.solveGBFS()
+    file = open('./' + str(puzzleNum) + '-gbfs-solution.txt', 'w')
+    if len(path) > 0:
+        for state in reversed(path):
+            if not state.get_prev_state():
+                file.write(
+                    "0 0 " + re.sub(r',|\[|\]', r'', str(state.get_state())) + '\n')
+                continue
+
+            for cur, par in zip(state.get_state(), state.get_prev_state().get_state()):
+                if(cur != par):
+                    changedtile = cur+par
+            file.write(str(changedtile) + " " +
+                       str(state.get_cost() - state.get_prev_state().get_cost()) + " " + re.sub(r',|\[|\]', r'', str(state.get_state())) + '\n')
+
+        file.write(str(done_time) + " " + str(path[0].get_cost()))
 
 
 if __name__ == "__main__":
-    print(Greedy(init_state, goal_state, "default"))
+    file1 = open('./input.txt', 'r')
+    lines = file1.readlines()
+    for i, line in enumerate(lines):
+        numbers = line.split()
+        numbers = [int(i) for i in numbers]
+        init_state = np.array(numbers).reshape(
+            goal_states[0].shape[0], goal_states[0].shape[1])
+        Greedy(i, init_state, goal_states, "misplaced")
