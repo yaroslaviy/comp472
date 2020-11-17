@@ -13,7 +13,8 @@ init_state = np.array([[1, 5, 3, 4],
 def Greedy(init_state, goal_state, heuristic):
     solver = Solver(init_state, goal_state, heuristic)
     path = solver.solveGBFS()
+    return path
 
 
 if __name__ == "__main__":
-    Greedy(init_state, goal_state, "default")
+    print(Greedy(init_state, goal_state, "default"))

@@ -19,8 +19,7 @@ class Solver():
     def solveGBFS(self):
 
         # initiate everything
-        x_axis = [1, 0, -1,  0]
-        y_axis = [0, 1,  0, -1]
+        moves = [(1, 0), (0, 1), (-1, 0), (0, -1)]
         openlist = []
         closedlist = set()
         cost = 0
@@ -51,7 +50,9 @@ class Solver():
 
             # reached final state
             if cur_state == self.goalState.flatten().tolist():
-                print('done with puzzle' + str(cur_state))
+
+                print('done with puzzle ' + str(cur_state) +
+                      ' in: ' + str(time.time() - start_time))
                 while cur_node.get_prev_state():
                     self.path.append(cur_node)
                     cur_node = cur_node.get_prev_state()
@@ -65,7 +66,7 @@ class Solver():
                 self.goalState.shape[0], self.goalState.shape[1])
 
             # check base movements
-            for x, y in zip(x_axis, y_axis):
+            for x, y in moves:
 
                 # create new state
                 new_state = np.array(cur_state)
