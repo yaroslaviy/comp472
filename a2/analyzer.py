@@ -62,10 +62,10 @@ def analyze():
             for last_line in file:
                 pass
         data = last_line.split()                              # Split last line in 2
-        cur_cost = data(0)                                    # Store cost
+        cur_cost = float(data[0])                                    # Store cost
         # Keep adding up the total cost
         totalCost += cur_cost
-        cur_time = data(1)                                    # Store time
+        cur_time = float(data[1])                                    # Store time
         # Keep adding up the total time
         totalTime += cur_time
     oFile.write(str(totalCost/50) + '\n')
@@ -148,10 +148,10 @@ def analyze():
             for last_line in file:
                 pass
         data = last_line.split()                              # Split last line in 2
-        cur_cost = data(0)                                    # Store cost
+        cur_cost = float(data[0])                                    # Store cost
         # Keep adding up the total cost
         totalCost += cur_cost
-        cur_time = data(1)                                    # Store time
+        cur_time = float(data[1])                                    # Store time
         # Keep adding up the total time
         totalTime += cur_time
     oFile.write(str(totalCost/50) + '\n')
@@ -211,7 +211,7 @@ def analyze():
             lines = len(file.readlines())
             totalLines += (lines + 1)
             file.close()
-    oFile.write(totalLines/50 + '\n')
+    oFile.write(str(totalLines/50) + '\n')
 
     oFile.write("Total length of the search path: ")
     oFile.write(str(totalLines-50) + '\n')
@@ -234,10 +234,10 @@ def analyze():
             for last_line in file:
                 pass
         data = last_line.split()                              # Split last line in 2
-        cur_cost = data(0)                                    # Store cost
+        cur_cost = float(data[0])                                    # Store cost
         # Keep adding up the total cost
         totalCost += cur_cost
-        cur_time = data(1)                                    # Store time
+        cur_time = float(data[1])                                    # Store time
         # Keep adding up the total time
         totalTime += cur_time
     oFile.write(str(totalCost/50) + '\n')
@@ -320,10 +320,10 @@ def analyze():
             for last_line in file:
                 pass
         data = last_line.split()                              # Split last line in 2
-        cur_cost = data(0)                                    # Store cost
+        cur_cost = float(data[0])                                    # Store cost
         # Keep adding up the total cost
         totalCost += cur_cost
-        cur_time = data(1)                                    # Store time
+        cur_time = float(data[1])                                    # Store time
         # Keep adding up the total time
         totalTime += cur_time
     oFile.write(str(totalCost/50) + '\n')
@@ -383,7 +383,7 @@ def analyze():
             lines = len(file.readlines())
             totalLines += (lines + 1)
             file.close()
-    oFile.write(totalLines/50 + '\n')
+    oFile.write(str(totalLines/50) + '\n')
 
     oFile.write("Total length of the search path: ")
     oFile.write(str(totalLines-50) + '\n')
@@ -406,10 +406,10 @@ def analyze():
             for last_line in file:
                 pass
         data = last_line.split()                              # Split last line in 2
-        cur_cost = data(0)                                    # Store cost
+        cur_cost = float(data[0])                                     # Store cost
         # Keep adding up the total cost
         totalCost += cur_cost
-        cur_time = data(1)                                    # Store time
+        cur_time = float(data[1])                                    # Store time
         # Keep adding up the total time
         totalTime += cur_time
     oFile.write(str(totalCost/50) + '\n')
