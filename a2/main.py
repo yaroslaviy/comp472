@@ -29,7 +29,7 @@ def Greedy(puzzleNum, init_state, goal_states, heuristic):
             file.write(str(changedtile) + " " +
                        str(state.get_cost() - state.get_prev_state().get_cost()) + " " + re.sub(r',|\[|\]', r'', str(state.get_state())) + '\n')
 
-        file.write(str(path[0].get_cost() + " " + str(done_time)))
+        file.write(str(path[0].get_cost()) + " " + str(done_time))
     else:
         file.write('no solution')
 
@@ -52,7 +52,7 @@ def UCS(puzzleNum, init_state, goal_states, heuristic):
             file.write(str(changedtile) + " " +
                        str(state.get_cost() - state.get_prev_state().get_cost()) + " " + re.sub(r',|\[|\]', r'', str(state.get_state())) + '\n')
 
-        file.write(str(path[0].get_cost() + " " + str(done_time)))
+        file.write(str(path[0].get_cost()) + " " + str(done_time))
     else:
         file.write('no solution')
 
@@ -75,7 +75,7 @@ def Astar(puzzleNum, init_state, goal_states, heuristic):
             file.write(str(changedtile) + " " +
                        str(state.get_cost() - state.get_prev_state().get_cost()) + " " + re.sub(r',|\[|\]', r'', str(state.get_state())) + '\n')
 
-        file.write(str(path[0].get_cost() + " " + str(done_time)))
+        file.write(str(path[0].get_cost()) + " " + str(done_time))
     else:
         file.write('no solution')
 
