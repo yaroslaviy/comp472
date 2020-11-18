@@ -1,8 +1,10 @@
+import random
+import re
 import numpy as np
 from Solver import Solver
 import sys
 import getopt
-import re
+
 
 goal_states = np.array(([[1, 2, 3, 4],
                          [5, 6, 7, 0]], [[1, 3, 5, 7],
@@ -90,5 +92,21 @@ if __name__ == "__main__":
         UCS(i, init_state, goal_states, "h1")
         Astar(i, init_state, goal_states, "h1")
         Greedy(i, init_state, goal_states, "h2")
-        UCS(i, init_state, goal_states, "h2")
         Astar(i, init_state, goal_states, "h2")
+
+
+# Generate 50 random puzzles and write them into a text file by line
+my_file = open("my_50_puzzles.txt", "w")
+
+for i in range(50):
+    possible_numbers = [0, 1, 2, 3, 4, 5, 6, 7]
+    random.shuffle(possible_numbers)
+
+    # .write() only takes strings as argument, so we use str() to write integer as a string into the file.
+    for numb in possible_numbers:
+        my_file.write(str(numb))
+        my_file.write(" ")
+    # creates a new line after each puzzle's contents are written in the file
+    my_file.write("\n")
+
+my_file.close()

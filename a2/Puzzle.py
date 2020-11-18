@@ -50,20 +50,20 @@ class PuzzleState:
             count1 = 0
             count2 = 0
             for state_tile, goal_tile in zip(self.state, self.goals[0].flatten().tolist()):
-                if state_tile != goal_tile:
+                if state_tile != goal_tile and state_tile != 0:
                     count1 += 1
             for state_tile, goal_tile in zip(self.state, self.goals[1].flatten().tolist()):
-                if state_tile != goal_tile:
+                if state_tile != goal_tile and state_tile != 0:
                     count2 += 1
             self.hscore = min(count1, count2)
         if self.heuristic == "h2":
             count1 = 0
             count2 = 0
             for state_tile in self.state:
-                if self.state.index(state_tile) // 4 != self.goals[0].flatten().tolist().index(state_tile) // 4:
+                if self.state.index(state_tile) // 4 != self.goals[0].flatten().tolist().index(state_tile) // 4 and state_tile != 0:
                     count1 += 1
             for state_tile in self.state:
-                if self.state.index(state_tile) // 4 != self.goals[1].flatten().tolist().index(state_tile) // 4:
+                if self.state.index(state_tile) // 4 != self.goals[1].flatten().tolist().index(state_tile) // 4 and state_tile != 0:
                     count2 += 1
             self.hscore = min(count1, count2)
 
