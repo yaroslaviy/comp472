@@ -81,12 +81,14 @@ def Astar(puzzleNum, init_state, goal_states, heuristic):
 if __name__ == "__main__":
     file1 = open('./input.txt', 'r')
     lines = file1.readlines()
-    heur = input("Which heuristic to use? (e.g. h0) ")
     for i, line in enumerate(lines):
         numbers = line.split()
         numbers = [int(i) for i in numbers]
         init_state = np.array(numbers).reshape(
             goal_states[0].shape[0], goal_states[0].shape[1])
-        Greedy(i, init_state, goal_states, heur)
-        UCS(i, init_state, goal_states, heur)
-        Astar(i, init_state, goal_states, heur)
+        Greedy(i, init_state, goal_states, "h1")
+        UCS(i, init_state, goal_states, "h1")
+        Astar(i, init_state, goal_states, "h1")
+        Greedy(i, init_state, goal_states, "h2")
+        UCS(i, init_state, goal_states, "h2")
+        Astar(i, init_state, goal_states, "h2")

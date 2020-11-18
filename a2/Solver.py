@@ -19,8 +19,12 @@ class Solver():
         return self.path
 
     def solve(self, algo):
-        file = open('./output/search/' + str(self.puzzleNum) +
-                    '_' + algo + '-' + self.heuristic + '_search.txt', 'w')
+        if(algo != 'ucs'):
+            file = open('./output/search/' + str(self.puzzleNum) +
+                        '_' + algo + '-' + self.heuristic + '_search.txt', 'w')
+        else:
+            file = open('./output/search/' + str(self.puzzleNum) +
+                        '_' + algo + '-' + 'search.txt', 'w')
 
         # initiate everything
         moves = [(1, 0), (0, 1), (-1, 0), (0, -1)]
