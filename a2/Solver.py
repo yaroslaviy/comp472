@@ -57,6 +57,18 @@ class Solver():
             file.write(stringstart +
                        re.sub(r',|\[|\]', r'', str(cur_state)) + '\n')
 
+            # reached final state
+            if cur_state == self.goalStates[0].flatten().tolist() or cur_state == self.goalStates[1].flatten().tolist():
+                done_time = time.time() - start_time
+                print(algo + ' done with puzzle #' + str(self.puzzleNum) +
+                      ' in: ' + str(done_time) + " seconds.")
+                self.path.append(cur_node)
+
+                while cur_node.get_prev_state():
+                    cur_node = cur_node.get_prev_state()
+                    self.path.append(cur_node)
+                break
+
             # check if this node been explored already
             if len(closedlist) > 0:
                 closedStates, closedCosts = zip(*closedlist)
@@ -69,18 +81,9 @@ class Solver():
 
             # mark explored
             closedlist.append((str(cur_state), cur_node.get_cost()))
-
-            # reached final state
-            if cur_state == self.goalStates[0].flatten().tolist() or cur_state == self.goalStates[1].flatten().tolist():
-                done_time = time.time() - start_time
-                print(algo + ' done with puzzle #' + str(self.puzzleNum) +
-                      ' in: ' + str(done_time) + " seconds.")
-                self.path.append(cur_node)
-
-                while cur_node.get_prev_state():
-                    cur_node = cur_node.get_prev_state()
-                    self.path.append(cur_node)
-                break
+            # if str(cur_state) in closedlist:
+            #     continue
+            # closedlist.append(str(cur_state))
 
             # find 0 tile and its coordinates
             empty_tile = cur_state.index(0)

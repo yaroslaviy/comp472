@@ -59,7 +59,7 @@ class PuzzleState:
 
         if(algo == 'gbfs'):
             self.fscore = self.hscore
-        elif(algo == 'a'):
+        elif(algo == 'astar'):
             self.fscore = self.hscore + self.cost
         elif(algo == 'ucs'):
             self.fscore = self.cost
