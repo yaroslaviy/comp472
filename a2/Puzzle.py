@@ -2,13 +2,16 @@ import numpy as np
 
 
 class PuzzleState:
-    def __init__(self, state, goals, cost, prevState, heuristic="default"):
+    def __init__(self, state, goals, cost, prevState, algo, heuristic="default"):
         self.state = state
         self.goals = goals
         self.prev_state = prevState
         self.cost = cost
         self.heuristic = heuristic
-        self.calculateScore()
+        self.hscore = 0
+        self.fscore = 0
+
+        self.calculateScores(algo)
 
     def get_state(self):
         return self.state
@@ -22,25 +25,28 @@ class PuzzleState:
     def get_cost(self):
         return self.cost
 
-    def get_score(self):
-        return self.score
+    def get_fscore(self):
+        return self.fscore
+
+    def get_hscore(self):
+        return self.hscore
 
     def __lt__(self, other):
-        return self.score < other.score
+        return self.fscore < other.fscore
 
     def __eq__(self, other):
-        return self.score == other.score
+        return self.fscore == other.fscore
 
     def __gt__(self, other):
-        return self.score > other.score
+        return self.fscore > other.fscore
 
-    def calculateScore(self):
-        if self.heuristic == "default":
+    def calculateScores(self, algo):
+        if self.heuristic == "h0":
             if self.state[len(self.state) - 1] == 0:
-                self.score = 1
+                self.hscore = 0
             else:
-                self.score = 0
-        if self.heuristic == "misplaced":
+                self.hscore = 1
+        if self.heuristic == "h1":
             count1 = 0
             count2 = 0
             for state_tile, goal_tile in zip(self.state, self.goals[0].flatten().tolist()):
@@ -49,4 +55,11 @@ class PuzzleState:
             for state_tile, goal_tile in zip(self.state, self.goals[1].flatten().tolist()):
                 if state_tile != goal_tile:
                     count2 += 1
-            self.score = min(count1, count2)
+            self.hscore = min(count1, count2)
+
+        if(algo == 'gbfs'):
+            self.fscore = self.hscore
+        elif(algo == 'a'):
+            self.fscore = self.hscore + self.cost
+        elif(algo == 'ucs'):
+            self.fscore = self.cost

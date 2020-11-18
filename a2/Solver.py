@@ -18,21 +18,22 @@ class Solver():
     def getPath(self):
         return self.path
 
-    def solveGBFS(self):
-        file = open('./' + str(self.puzzleNum) + '-gbfs-search.txt', 'w')
+    def solve(self, algo):
+        file = open('./output/search/' + str(self.puzzleNum) +
+                    '_' + algo + '-' + self.heuristic + '_search.txt', 'w')
 
         # initiate everything
         moves = [(1, 0), (0, 1), (-1, 0), (0, -1)]
         openlist = []
-        closedlist = set()
+        closedlist = []
         cost = 0
 
         # start timer
         start_time = time.time()
-
+        done_time = None
         # starting position
         start_node = PuzzleState(self.startState.flatten().tolist(
-        ), self.goalStates, cost, prevState=None, heuristic=self.heuristic)
+        ), self.goalStates, cost, prevState=None, algo=algo, heuristic=self.heuristic)
         heapq.heappush(openlist, start_node)
 
         iterations = 0
@@ -43,19 +44,36 @@ class Solver():
             # pop the best node
             cur_node = heapq.heappop(openlist)
             cur_state = cur_node.get_state()
-            file.write(str(cur_node.get_score()) + " 0 " +
-                       str(cur_node.get_score()) + " " + re.sub(r',|\[|\]', r'', str(cur_state)) + '\n')
-            # if this node been explored already, skip it
-            if str(cur_state) in closedlist:
-                continue
+            if algo == 'gbfs':
+                stringstart = str(cur_node.get_fscore()) + \
+                    " 0 " + str(cur_node.get_hscore()) + " "
+            elif algo == 'ucs':
+                stringstart = str(cur_node.get_fscore()) + \
+                    " " + str(cur_node.get_cost()) + " 0 "
+            else:
+                stringstart = str(cur_node.get_fscore()) + \
+                    " " + str(cur_node.get_cost()) + " " + \
+                    str(cur_node.get_hscore()) + " "
+            file.write(stringstart +
+                       re.sub(r',|\[|\]', r'', str(cur_state)) + '\n')
+
+            # check if this node been explored already
+            if len(closedlist) > 0:
+                closedStates, closedCosts = zip(*closedlist)
+                if str(cur_state) in list(closedStates):
+                    if(algo != 'astar' or cur_node.get_cost() >= closedCosts[list(closedStates).index(str(cur_state))]):
+                        continue
+                    else:
+                        closedlist.pop(
+                            list(closedStates).index(str(cur_state)))
 
             # mark explored
-            closedlist.add(str(cur_state))
+            closedlist.append((str(cur_state), cur_node.get_cost()))
 
             # reached final state
             if cur_state == self.goalStates[0].flatten().tolist() or cur_state == self.goalStates[1].flatten().tolist():
                 done_time = time.time() - start_time
-                print('Done with puzzle #' + str(self.puzzleNum) +
+                print(algo + ' done with puzzle #' + str(self.puzzleNum) +
                       ' in: ' + str(done_time) + " seconds.")
                 self.path.append(cur_node)
 
@@ -82,7 +100,7 @@ class Solver():
                     new_state[r, c], new_state[r+x, c +
                                                y] = new_state[r+x, c+y], new_state[r, c]
                     new_node = PuzzleState(new_state.flatten().tolist(
-                    ), self.goalStates, cur_node.get_cost() + 1, cur_node, self.heuristic)
+                    ), self.goalStates, cur_node.get_cost() + 1, cur_node, algo, self.heuristic)
 
                     # if state hasn't been explored before add to open
                     if str(new_node.get_state()) not in closedlist:
@@ -105,7 +123,7 @@ class Solver():
                     new_state[self.goalStates[0].shape[0] - 1, 0], new_state[0, self.goalStates[0].shape[1] -
                                                                              1] = new_state[0, self.goalStates[0].shape[1] - 1], new_state[self.goalStates[0].shape[0] - 1, 0]
                 new_node = PuzzleState(new_state.flatten().tolist(
-                ), self.goalStates, cur_node.get_cost() + 3, cur_node, self.heuristic)
+                ), self.goalStates, cur_node.get_cost() + 3, cur_node, algo, self.heuristic)
 
                 # if state hasn't been explored before add to open
                 if str(new_node.get_state()) not in closedlist:
@@ -122,7 +140,7 @@ class Solver():
                         new_state[r, c], new_state[r+x, c +
                                                    y] = new_state[r+x, c+y], new_state[r, c]
                         new_node = PuzzleState(new_state.flatten().tolist(
-                        ), self.goalStates, cur_node.get_cost() + 3, cur_node, self.heuristic)
+                        ), self.goalStates, cur_node.get_cost() + 3, cur_node, algo, self.heuristic)
 
                         # if state hasn't been explored before add to open
                         if str(new_node.get_state()) not in closedlist:
@@ -136,10 +154,13 @@ class Solver():
                                            1] = new_state[r, self.goalStates[0].shape[1] - 1], new_state[r, 0]
 
                 new_node = PuzzleState(new_state.flatten().tolist(
-                ), self.goalStates, cur_node.get_cost() + 2, cur_node, self.heuristic)
+                ), self.goalStates, cur_node.get_cost() + 2, cur_node, algo, self.heuristic)
 
                 if str(new_node.get_state()) not in closedlist:
                     heapq.heappush(
                         openlist,  new_node)
 
+        if not done_time:
+            print(algo + " didnt find solution for puzzle #" + str(self.puzzleNum))
+            done_time = 60
         return (self.path, done_time)
