@@ -173,7 +173,7 @@ class Solver():
                     heapq.heappush(
                         openlist,  new_node)
         file.close()
-        if not done_time:
+        if done_time is None:
             print(algo + " didnt find solution for puzzle #" + str(self.puzzleNum))
             file = open('./output/search/' + str(self.puzzleNum) +
                         '_' + algo + '-' + self.heuristic + '_search.txt', 'w')

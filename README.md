@@ -1,13 +1,15 @@
-# Assignment 1 
+# Assignment 2 
 Team members: 
 - Souheil Al-awar 26558038
 - Hyder Wajid 40060883
 - Yaroslav Bilodid 40068605
 
 ## How to run
-Every model has its own python script that takes in data from `./Dataset` and generates output file in `./output`.  
+1. Run `cd a2` in console
+2. `python main.py` will run GBFS and A* algorithms with h1 and h2 and also UCS algorithm. It will also generate fresh 50 random puzzles into `my_50_puzzles.txt`
 
-For example, to run just invoke `python GNB.py` in the terminal and it will prompt you to enter dataset number.  
+If needed, replace input puzzles in `input.txt`
+Also heurstics can be changed to h0 for given in assignment in main.py line 90-93
 
-That dataset will be used for training and testing the model.  
+This version will only work for 2x4 puzzles
 

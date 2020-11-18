@@ -132,4 +132,5 @@ dmypy.json
 .vscode
 
 # output
-a2/output
+a2/output/solution/*.txt
+a2/output/search/*.txt
