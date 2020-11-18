@@ -25,7 +25,10 @@ class Solver():
         # initiate everything
         moves = [(1, 0), (0, 1), (-1, 0), (0, -1)]
         openlist = []
-        closedlist = []
+        if(algo == 'astar'):
+            closedlist = []
+        else:
+            closedlist = set()
         cost = 0
 
         # start timer
@@ -69,21 +72,24 @@ class Solver():
                     self.path.append(cur_node)
                 break
 
-            # check if this node been explored already
-            if len(closedlist) > 0:
-                closedStates, closedCosts = zip(*closedlist)
-                if str(cur_state) in list(closedStates):
-                    if(algo != 'astar' or cur_node.get_cost() >= closedCosts[list(closedStates).index(str(cur_state))]):
-                        continue
-                    else:
-                        closedlist.pop(
-                            list(closedStates).index(str(cur_state)))
+            if(algo == 'astar'):
+                # check if this node been explored already
+                if len(closedlist) > 0:
+                    closedStates, closedCosts = zip(*closedlist)
+                    if str(cur_state) in list(closedStates):
+                        if(cur_node.get_cost() >= closedCosts[list(closedStates).index(str(cur_state))]):
+                            continue
+                        else:
+                            closedlist.pop(
+                                list(closedStates).index(str(cur_state)))
 
-            # mark explored
-            closedlist.append((str(cur_state), cur_node.get_cost()))
-            # if str(cur_state) in closedlist:
-            #     continue
-            # closedlist.append(str(cur_state))
+                # mark explored
+                closedlist.append((str(cur_state), cur_node.get_cost()))
+            # much better execution time
+            else:
+                if str(cur_state) in closedlist:
+                    continue
+                closedlist.add(str(cur_state))
 
             # find 0 tile and its coordinates
             empty_tile = cur_state.index(0)
@@ -162,8 +168,12 @@ class Solver():
                 if str(new_node.get_state()) not in closedlist:
                     heapq.heappush(
                         openlist,  new_node)
-
+        file.close()
         if not done_time:
             print(algo + " didnt find solution for puzzle #" + str(self.puzzleNum))
+            file = open('./output/search/' + str(self.puzzleNum) +
+                        '_' + algo + '-' + self.heuristic + '_search.txt', 'w')
+            file.write('no solution')
             done_time = 60
+            file.close()
         return (self.path, done_time)
