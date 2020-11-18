@@ -1,0 +1,65 @@
+Analisys for UCS
+Average length of the solution path: 11.06
+Total length of the solution path: 553
+Average length of the search path: 18303.5
+Total length of the search path: 915125
+Average number of no solution:0.0
+Total number of no solution:0
+Average cost:12.9
+Total cost:645.0
+Average execution time: 1.3764977216720582
+Total execution time: 68.8248860836029
+Optimality of the solution path: 1.0
+
+Analisys for GBFS H1
+Average length of the solution path: 18.66
+Total length of the solution path: 933
+Average length of the search path: 50.92
+Total length of the search path: 2496
+Average number of no solution:0.0
+Total number of no solution:0
+Average cost:30.1
+Total cost:1505.0
+Average execution time: 0.004557771682739258
+Total execution time: 0.2278885841369629
+Optimality of the solution path: 2.3333333333333335
+
+Analisys for GBFS H2
+Average length of the solution path: 53.18
+Total length of the solution path: 2659
+Average length of the search path: 1654.5
+Total length of the search path: 82675
+Average number of no solution:0.0
+Total number of no solution:0
+Average cost:79.86
+Total cost:3993.0
+Average execution time: 0.25331218719482423
+Total execution time: 12.665609359741211
+Optimality of the solution path: 6.190697674418605
+
+Analisys for A* H1
+Average length of the solution path: 11.02
+Total length of the solution path: 551
+Average length of the search path: 1396.54
+Total length of the search path: 69777
+Average number of no solution:0.0
+Total number of no solution:0
+Average cost:12.9
+Total cost:645.0
+Average execution time: 0.4196724843978882
+Total execution time: 20.98362421989441
+Optimality of the solution path: 1.0
+
+Analysis for A* H2
+Average length of the solution path: 9.82
+Total length of the solution path: 491
+Average length of the search path: 6054.58
+Total length of the search path: 302679
+Average number of no solution:0.08
+Total number of no solution:4
+Average cost:11.58
+Total cost:579.0
+Average execution time: 6.11703332901001
+Total execution time: 305.8516664505005
+Optimality of the solution path: 0.8976744186046511
+

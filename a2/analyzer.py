@@ -62,16 +62,19 @@ def analyze():
             for last_line in file:
                 pass
         data = last_line.split()                              # Split last line in 2
-        cur_cost = float(data[0])                                    # Store cost
+        # Store cost
+        cur_cost = float(data[0])
         # Keep adding up the total cost
         totalCost += cur_cost
-        cur_time = float(data[1])                                    # Store time
+        # Store time
+        cur_time = float(data[1])
         # Keep adding up the total time
         totalTime += cur_time
     oFile.write(str(totalCost/50) + '\n')
 
     oFile.write("Total cost:")
     oFile.write(str(totalCost) + '\n')
+    UCStotal = totalCost
 
     oFile.write("Average execution time: ")
     oFile.write(str(totalTime/50) + '\n')
@@ -80,8 +83,7 @@ def analyze():
     oFile.write(str(totalTime) + '\n')
 
     oFile.write("Optimality of the solution path: ")
-    oFile.write(
-        "Hi, I'm an algorithm, and I'm very optimal, very low cost, yes, give me good grade, yes.\n\n")
+    oFile.write(str(totalCost/UCStotal) + '\n\n')
 
     #############################
 
@@ -148,10 +150,12 @@ def analyze():
             for last_line in file:
                 pass
         data = last_line.split()                              # Split last line in 2
-        cur_cost = float(data[0])                                    # Store cost
+        # Store cost
+        cur_cost = float(data[0])
         # Keep adding up the total cost
         totalCost += cur_cost
-        cur_time = float(data[1])                                    # Store time
+        # Store time
+        cur_time = float(data[1])
         # Keep adding up the total time
         totalTime += cur_time
     oFile.write(str(totalCost/50) + '\n')
@@ -166,8 +170,8 @@ def analyze():
     oFile.write(str(totalTime) + '\n')
 
     oFile.write("Optimality of the solution path: ")
-    oFile.write(
-        "Hi, I'm an algorithm, and I'm very optimal, very low cost, yes, give me good grade, yes.\n\n")
+
+    oFile.write(str(totalCost/UCStotal) + '\n\n')
 
     #############################
 
@@ -234,10 +238,12 @@ def analyze():
             for last_line in file:
                 pass
         data = last_line.split()                              # Split last line in 2
-        cur_cost = float(data[0])                                    # Store cost
+        # Store cost
+        cur_cost = float(data[0])
         # Keep adding up the total cost
         totalCost += cur_cost
-        cur_time = float(data[1])                                    # Store time
+        # Store time
+        cur_time = float(data[1])
         # Keep adding up the total time
         totalTime += cur_time
     oFile.write(str(totalCost/50) + '\n')
@@ -252,9 +258,7 @@ def analyze():
     oFile.write(str(totalTime) + '\n')
 
     oFile.write("Optimality of the solution path: ")
-    oFile.write(
-        "Hi, I'm an algorithm, and I'm very optimal, very low cost, yes, give me good grade, yes.\n\n")
-
+    oFile.write(str(totalCost/UCStotal) + '\n\n')
     #############################
 
     oFile.write("Analisys for A* H1\n")
@@ -320,10 +324,12 @@ def analyze():
             for last_line in file:
                 pass
         data = last_line.split()                              # Split last line in 2
-        cur_cost = float(data[0])                                    # Store cost
+        # Store cost
+        cur_cost = float(data[0])
         # Keep adding up the total cost
         totalCost += cur_cost
-        cur_time = float(data[1])                                    # Store time
+        # Store time
+        cur_time = float(data[1])
         # Keep adding up the total time
         totalTime += cur_time
     oFile.write(str(totalCost/50) + '\n')
@@ -338,8 +344,7 @@ def analyze():
     oFile.write(str(totalTime) + '\n')
 
     oFile.write("Optimality of the solution path: ")
-    oFile.write(
-        "Hi, I'm an algorithm, and I'm very optimal, very low cost, yes, give me good grade, yes.\n\n")
+    oFile.write(str(totalCost/UCStotal) + '\n\n')
 
     #############################
 
@@ -406,10 +411,12 @@ def analyze():
             for last_line in file:
                 pass
         data = last_line.split()                              # Split last line in 2
-        cur_cost = float(data[0])                                     # Store cost
+        # Store cost
+        cur_cost = float(data[0])
         # Keep adding up the total cost
         totalCost += cur_cost
-        cur_time = float(data[1])                                    # Store time
+        # Store time
+        cur_time = float(data[1])
         # Keep adding up the total time
         totalTime += cur_time
     oFile.write(str(totalCost/50) + '\n')
@@ -424,8 +431,7 @@ def analyze():
     oFile.write(str(totalTime) + '\n')
 
     oFile.write("Optimality of the solution path: ")
-    oFile.write(
-        "Hi, I'm an algorithm, and I'm very optimal, very low cost, yes, give me good grade, yes.\n\n")
+    oFile.write(str(totalCost/UCStotal) + '\n\n')
 
     #############################
 
