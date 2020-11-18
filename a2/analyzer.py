@@ -21,16 +21,16 @@ def analyze():
             totalLines += (lines + 1)
             file.close()
     # -50 to disregard the last line of sol. cost & exe. time
-    oFile.write((totalLines-50)/50 + '\n')
+    oFile.write(str((totalLines-50)/50) + '\n')
 
     oFile.write("Total length of the solution path: ")
-    oFile.write((totalLines-50) + '\n')
+    oFile.write(str((totalLines-50)) + '\n')
 
     oFile.write("Average length of the search path: ")
     totalLines = 0
     for x in range(0, 49):
         # open ucs-search file
-        file = open('./output/search/' + str(x) + '_ucs_search.txt', 'r')
+        file = open('./output/search/' + str(x) + '_ucs-search.txt', 'r')
         line = file.readline()
         if line == 'no solution':
             file.close()
@@ -39,16 +39,16 @@ def analyze():
             lines = len(file.readlines())
             totalLines += (lines + 1)
             file.close()
-    oFile.write(totalLines/50 + '\n')
+    oFile.write(str(totalLines/50) + '\n')
 
     oFile.write("Total length of the search path: ")
-    oFile.write((totalLines-50) + '\n')
+    oFile.write(str((totalLines-50)) + '\n')
 
     oFile.write("Average number of no solution:")
-    oFile.write(noSolutions/50 + '\n')
+    oFile.write(str(noSolutions/50) + '\n')
 
     oFile.write("Total number of no solution:")
-    oFile.write(noSolutions + '\n')
+    oFile.write(str(noSolutions) + '\n')
 
     oFile.write("Average cost:")
     totalCost = 0
@@ -68,16 +68,16 @@ def analyze():
         cur_time = data(1)                                    # Store time
         # Keep adding up the total time
         totalTime += cur_time
-    oFile.write(totalCost/50 + '\n')
+    oFile.write(str(totalCost/50) + '\n')
 
     oFile.write("Total cost:")
-    oFile.write(totalCost + '\n')
+    oFile.write(str(totalCost) + '\n')
 
     oFile.write("Average execution time: ")
-    oFile.write(totalTime/50 + '\n')
+    oFile.write(str(totalTime/50) + '\n')
 
     oFile.write("Total execution time: ")
-    oFile.write(totalTime + '\n')
+    oFile.write(str(totalTime) + '\n')
 
     oFile.write("Optimality of the solution path: ")
     oFile.write(
@@ -107,10 +107,10 @@ def analyze():
             totalLines += (lines + 1)
             file.close()
     # -50 to disregard the last line of sol. cost & exe. time
-    oFile.write((totalLines-50)/50 + '\n')
+    oFile.write(str((totalLines-50)/50) + '\n')
 
     oFile.write("Total length of the solution path: ")
-    oFile.write((totalLines-50) + '\n')
+    oFile.write(str((totalLines-50)) + '\n')
 
     oFile.write("Average length of the search path: ")
     totalLines = 0
@@ -125,16 +125,16 @@ def analyze():
             lines = len(file.readlines())
             totalLines += (lines + 1)
             file.close()
-    oFile.write(totalLines/50 + '\n')
+    oFile.write(str(totalLines/50) + '\n')
 
     oFile.write("Total length of the search path: ")
-    oFile.write((totalLines-50) + '\n')
+    oFile.write(str((totalLines-50)) + '\n')
 
     oFile.write("Average number of no solution:")
-    oFile.write(noSolutions/50 + '\n')
+    oFile.write(str(noSolutions/50) + '\n')
 
     oFile.write("Total number of no solution:")
-    oFile.write(noSolutions + '\n')
+    oFile.write(str(noSolutions) + '\n')
 
     oFile.write("Average cost:")
     totalCost = 0
@@ -154,16 +154,16 @@ def analyze():
         cur_time = data(1)                                    # Store time
         # Keep adding up the total time
         totalTime += cur_time
-    oFile.write(totalCost/50 + '\n')
+    oFile.write(str(totalCost/50) + '\n')
 
     oFile.write("Total cost:")
-    oFile.write(totalCost + '\n')
+    oFile.write(str(totalCost) + '\n')
 
     oFile.write("Average execution time: ")
-    oFile.write(totalTime/50 + '\n')
+    oFile.write(str(totalTime/50) + '\n')
 
     oFile.write("Total execution time: ")
-    oFile.write(totalTime + '\n')
+    oFile.write(str(totalTime) + '\n')
 
     oFile.write("Optimality of the solution path: ")
     oFile.write(
@@ -193,10 +193,10 @@ def analyze():
             totalLines += (lines + 1)
             file.close()
     # -50 to disregard the last line of sol. cost & exe. time
-    oFile.write((totalLines-50)/50 + '\n')
+    oFile.write(str((totalLines-50)/50) + '\n')
 
     oFile.write("Total length of the solution path: ")
-    oFile.write((totalLines-50) + '\n')
+    oFile.write(str((totalLines-50)) + '\n')
 
     oFile.write("Average length of the search path: ")
     totalLines = 0
@@ -214,13 +214,13 @@ def analyze():
     oFile.write(totalLines/50 + '\n')
 
     oFile.write("Total length of the search path: ")
-    oFile.write((totalLines-50) + '\n')
+    oFile.write(str(totalLines-50) + '\n')
 
     oFile.write("Average number of no solution:")
-    oFile.write(noSolutions/50 + '\n')
+    oFile.write(str(noSolutions/50) + '\n')
 
     oFile.write("Total number of no solution:")
-    oFile.write(noSolutions + '\n')
+    oFile.write(str(noSolutions) + '\n')
 
     oFile.write("Average cost:")
     totalCost = 0
@@ -240,16 +240,16 @@ def analyze():
         cur_time = data(1)                                    # Store time
         # Keep adding up the total time
         totalTime += cur_time
-    oFile.write(totalCost/50 + '\n')
+    oFile.write(str(totalCost/50) + '\n')
 
     oFile.write("Total cost:")
-    oFile.write(totalCost + '\n')
+    oFile.write(str(totalCost) + '\n')
 
     oFile.write("Average execution time: ")
-    oFile.write(totalTime/50 + '\n')
+    oFile.write(str(totalTime/50) + '\n')
 
     oFile.write("Total execution time: ")
-    oFile.write(totalTime + '\n')
+    oFile.write(str(totalTime) + '\n')
 
     oFile.write("Optimality of the solution path: ")
     oFile.write(
@@ -279,10 +279,10 @@ def analyze():
             totalLines += (lines + 1)
             file.close()
     # -50 to disregard the last line of sol. cost & exe. time
-    oFile.write((totalLines-50)/50 + '\n')
+    oFile.write(str((totalLines-50)/50) + '\n')
 
     oFile.write("Total length of the solution path: ")
-    oFile.write((totalLines-50) + '\n')
+    oFile.write(str((totalLines-50)) + '\n')
 
     oFile.write("Average length of the search path: ")
     totalLines = 0
@@ -297,16 +297,16 @@ def analyze():
             lines = len(file.readlines())
             totalLines += (lines + 1)
             file.close()
-    oFile.write(totalLines/50 + '\n')
+    oFile.write(str(totalLines/50) + '\n')
 
     oFile.write("Total length of the search path: ")
-    oFile.write((totalLines-50) + '\n')
+    oFile.write(str(totalLines-50) + '\n')
 
     oFile.write("Average number of no solution:")
-    oFile.write(noSolutions/50 + '\n')
+    oFile.write(str(noSolutions/50) + '\n')
 
     oFile.write("Total number of no solution:")
-    oFile.write(noSolutions + '\n')
+    oFile.write(str(noSolutions) + '\n')
 
     oFile.write("Average cost:")
     totalCost = 0
@@ -326,16 +326,16 @@ def analyze():
         cur_time = data(1)                                    # Store time
         # Keep adding up the total time
         totalTime += cur_time
-    oFile.write(totalCost/50 + '\n')
+    oFile.write(str(totalCost/50) + '\n')
 
     oFile.write("Total cost:")
-    oFile.write(totalCost + '\n')
+    oFile.write(str(totalCost) + '\n')
 
     oFile.write("Average execution time: ")
-    oFile.write(totalTime/50 + '\n')
+    oFile.write(str(totalTime/50) + '\n')
 
     oFile.write("Total execution time: ")
-    oFile.write(totalTime + '\n')
+    oFile.write(str(totalTime) + '\n')
 
     oFile.write("Optimality of the solution path: ")
     oFile.write(
@@ -343,7 +343,7 @@ def analyze():
 
     #############################
 
-    oFile.write("Analisys for A* H2\n")
+    oFile.write("Analysis for A* H2\n")
 
     oFile.write("Average length of the solution path: ")
     totalLines = 0
@@ -365,10 +365,10 @@ def analyze():
             totalLines += (lines + 1)
             file.close()
     # -50 to disregard the last line of sol. cost & exe. time
-    oFile.write((totalLines-50)/50 + '\n')
+    oFile.write(str((totalLines-50)/50) + '\n')
 
     oFile.write("Total length of the solution path: ")
-    oFile.write((totalLines-50) + '\n')
+    oFile.write(str(totalLines-50) + '\n')
 
     oFile.write("Average length of the search path: ")
     totalLines = 0
@@ -386,13 +386,13 @@ def analyze():
     oFile.write(totalLines/50 + '\n')
 
     oFile.write("Total length of the search path: ")
-    oFile.write((totalLines-50) + '\n')
+    oFile.write(str(totalLines-50) + '\n')
 
     oFile.write("Average number of no solution:")
-    oFile.write(noSolutions/50 + '\n')
+    oFile.write(str(noSolutions/50) + '\n')
 
     oFile.write("Total number of no solution:")
-    oFile.write(noSolutions + '\n')
+    oFile.write(str(noSolutions) + '\n')
 
     oFile.write("Average cost:")
     totalCost = 0
@@ -412,16 +412,16 @@ def analyze():
         cur_time = data(1)                                    # Store time
         # Keep adding up the total time
         totalTime += cur_time
-    oFile.write(totalCost/50 + '\n')
+    oFile.write(str(totalCost/50) + '\n')
 
     oFile.write("Total cost:")
-    oFile.write(totalCost + '\n')
+    oFile.write(str(totalCost) + '\n')
 
     oFile.write("Average execution time: ")
-    oFile.write(totalTime/50 + '\n')
+    oFile.write(str(totalTime/50) + '\n')
 
     oFile.write("Total execution time: ")
-    oFile.write(totalTime + '\n')
+    oFile.write(str(totalTime) + '\n')
 
     oFile.write("Optimality of the solution path: ")
     oFile.write(
