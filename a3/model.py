@@ -25,14 +25,18 @@ class MultinomialNaiveBayes:
 
     def getMetrics(self, fact, pred):
         # put metrics func here                                  
-        TP = len(self.yesTweets); TN = len(self.noTweets);               
-        FP = 0;              FN=0;                                 #FP are predictions wrongly classified as yes,  FN are predictions wrongly classified as no
+        TP = 0; TN = 0;               
+        FP = 0; FN=0;                                                  #FP are predictions wrongly classified as yes,  FN are predictions wrongly classified as no
 
         for i in range(len(fact)):
             if fact[i] == "no" and pred[i] == "yes":               # If Real is no and prediction classifies as yes then increment FP
                 FP += 1
             elif fact[i] == "yes" and pred[i] == "no":             # If Real is yes and prediction classifies as no then increment FN
                 FN += 1
+            elif fact[i] == "yes" and pred[i] == "yes":            # If Real is yes and prediction is same then increment TP
+                TP += 1
+            else:                                                  # If Real is no and prediction is also no then increment TN
+                TN += 1 
 
         accuracy = (TP + TN)/(TP + TN + FP + FN)                   #Accuracy = TP + TN / (TP + TN + FP + FN)
 
