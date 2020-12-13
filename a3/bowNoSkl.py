@@ -56,3 +56,15 @@ print(len(vocabulary))
 #     frequency_list.append(dict(Counter(i)))
 # # pprint.pprint(frequency_list) # this will print alphabetically
 # print(frequency_list)  # this will print as it is
+
+label_count = dfTraining["q1_label"].tolist()
+yes_count = 0
+no_count = 0
+
+for label in label_count:
+    if label == "yes": yes_count += 1
+    else: no_count +=1 
+
+print("Number of yes in training: " + str(yes_count) + ", number of no: " + str(no_count))
+
+
