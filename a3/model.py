@@ -9,12 +9,12 @@ class MultinomialNaiveBayes:
         self.classes = ("yes", "no")
 
     def fit(self, dataTrain):
-        yesTweets = dataTrain[dataTrain.q1_label == "yes"]          #Len(yesTweets) will give you total number of tweets classified as yes same for noTweets
-        noTweets = dataTrain[dataTrain.q1_label == "no"]
-        yesVoc = getvocabulary(yesTweets)
+        self.yesTweets = dataTrain[dataTrain.q1_label == "yes"]          #Len(yesTweets) will give you total number of tweets classified as yes same for noTweets
+        self.noTweets = dataTrain[dataTrain.q1_label == "no"]
+        yesVoc = getvocabulary(self.yesTweets)
         self.counts['yes']['total'] = len(yesVoc)
         self.counts['yes'] = dict(Counter(yesVoc))
-        noVoc = getvocabulary(noTweets)
+        noVoc = getvocabulary(self.noTweets)
         self.counts['no']['total'] = len(noVoc)
         self.counts['no'] = dict(Counter(noVoc))
         self.counts['grandTotal'] = dataTrain.shape()[0]
@@ -25,7 +25,7 @@ class MultinomialNaiveBayes:
 
     def getMetrics(self, fact, pred):
         # put metrics func here                                  
-        TP = len(yesTweets); TN = len(noTweets);               
+        TP = len(self.yesTweets); TN = len(self.noTweets);               
         FP = 0;              FN=0;                                 #FP are predictions wrongly classified as yes,  FN are predictions wrongly classified as no
 
         for i in range(len(fact)):
