@@ -20,8 +20,31 @@ class MultinomialNaiveBayes:
         self.counts['grandTotal'] = dataTrain.shape()[0]
 
     def calculateProb(self, text, className):
-        prob = numpy.log10(self.count[className]) - \
-            numpy.log10(self.count[className])
+        prob = numpy.log10(self.count[className]/self.count['grandtotal'])
+        text_arr = text.split()
+        for word in text_arr:
+            if word in self.counts[className]:
+                word_prob = numpy.log10(
+                    self.counts[className][word]/self.counts[className]['total'])
+            else:
+                word_prob = numpy.log10(
+                    0.01/(self.counts[className]['total']+0.01))
+            prob += word_prob
+        return prob
+
+    def predictOne(self, point):
+        yesProb = self.calculateProb(point, 'yes')
+        noProb = self.calculateProb(point, 'no')
+        if yesProb > noProb:
+            return 'yes'
+        else:
+            return 'no'
+
+    def predict(self, data):
+        pred = []
+        for text in data:
+            pred.append(self.predictOne(text))
+        return pred
 
     def getMetrics(self, fact, pred):
         # put metrics func here
