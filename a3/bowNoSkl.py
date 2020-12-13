@@ -63,8 +63,8 @@ print(len(vocabulary))
 
 yesTweets = dfTraining[dfTraining.q1_label == "yes"]
 noTweets = dfTraining[dfTraining.q1_label == "no"]
-
-yesCounters = Counter(getvocabulary(yesTweets))
-print(yesCounters)
-noCounters = Counter(getvocabulary(noTweets))
+yesVoc = getvocabulary(yesTweets)
+yesCounters = Counter(yesVoc)
+noVoc = getvocabulary(yesTweets)
+noCounters = Counter(noVoc)
 print(noCounters)
