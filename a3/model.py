@@ -1,10 +1,12 @@
+from bowNoSkl import original_voc
 from collections import Counter
 import numpy
 import re
 
 
 class MultinomialNaiveBayes:
-    def __init__(self):
+    def __init__(self, voc):
+        self.original = voc
         self.counts = {}
         self.classes = ("yes", "no")
 
@@ -13,10 +15,13 @@ class MultinomialNaiveBayes:
         noTweets = dataTrain[dataTrain.q1_label == "no"]
         yesVoc = getvocabulary(yesTweets)
         self.counts['yes']['total'] = len(yesVoc)
-        self.counts['yes'] = dict(Counter(yesVoc))
         noVoc = getvocabulary(noTweets)
         self.counts['no']['total'] = len(noVoc)
+        self.counts['yes'] = dict(Counter(yesVoc))
         self.counts['no'] = dict(Counter(noVoc))
+        if not self.original:
+            self.counts['yes'] = filterVoc(dict(Counter(yesVoc)))
+            self.counts['no'] = filterVoc(dict(Counter(noVoc)))
         self.counts['grandTotal'] = dataTrain.shape()[0]
 
     def calculateProb(self, text, className):
@@ -73,3 +78,11 @@ def getvocabulary(data):
     # flatten list
     vocabulary = [item for sublist in nested_voc for item in sublist]
     return vocabulary
+
+
+def filterVoc(original_voc):
+    newDict = dict()
+    for key, val in original_voc.items():
+        if(val != 1):
+            newDict[key] = val
+    return newDict
